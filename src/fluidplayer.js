@@ -1893,8 +1893,11 @@ const fluidPlayerClass = function () {
 
     self.setLayout = () => {
         //All other browsers
-        const listenTo = (self.isTouchDevice()) ? 'touchend' : 'click';
-        self.domRef.player.addEventListener(listenTo, () => self.playPauseToggle(), false);
+
+        // Commenting out the following two lines because I don't want to toggle pause/play on layout click/touch
+        // const listenTo = (self.isTouchDevice()) ? 'touchend' : 'click';
+        // self.domRef.player.addEventListener(listenTo, () => self.playPauseToggle(), false);
+    
         //Mobile Safari - because it does not emit a click event on initial click of the video
         self.domRef.player.addEventListener('play', self.initialPlay, false);
         self.setDefaultLayout();
