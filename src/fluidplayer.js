@@ -955,6 +955,7 @@ const fluidPlayerClass = function () {
         // Persistent settings
         self.fluidStorage.fluidVolume = self.latestVolume;
         self.fluidStorage.fluidMute = self.domRef.player.muted;
+        localStorage.setItem('muted', self.domRef.player.muted);
     };
 
     self.checkFullscreenSupport = (videoPlayerWrapperId) => {
@@ -2735,8 +2736,9 @@ const fluidPlayerClass = function () {
             && self.displayOptions.layoutControls.persistentSettings.volume) {
             self.setVolume(self.fluidStorage.fluidVolume);
 
-            if (typeof (self.fluidStorage.fluidMute) !== 'undefined' && self.fluidStorage.fluidMute === 'true') {
-                self.muteToggle();
+            const muted = localStorage.getItem('muted');
+            if (muted && muted === 'true') {
+                self.muteToggle()
             }
         }
 
